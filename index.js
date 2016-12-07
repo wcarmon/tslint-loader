@@ -23,7 +23,9 @@ function resolveOptions(webpackInstance) {
 
   options.formatter = options.formatter || 'custom';
   options.formattersDirectory = options.formattersDirectory || __dirname + '/formatters/';
-  options.configuration = options.configuration || Lint.Linter.findConfiguration(configFile, webpackInstance.resourcePath).results;
+  
+  var linter = Lint.Linter || Lint;
+  options.configuration = options.configuration || linter.findConfiguration(configFile, webpackInstance.resourcePath).results;
   options.tsConfigFile = options.tsConfigFile || 'tsconfig.json';
 
   return options;
